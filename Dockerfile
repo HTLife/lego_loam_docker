@@ -6,11 +6,11 @@ ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
 # install GLX-Gears
-RUN apt update && apt install -y --no-install-recommends mesa-utils x11-apps && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends mesa-utils x11-apps && rm -rf /var/lib/apt/lists/*
 
 # install LeGO-LOAM dependencies - GTSAM
-RUN apt update && apt-get install wget
-RUN wget -O ~/gtsam.zip https://github.com/borglab/gtsam/archive/4.0.0-alpha2.zip
+RUN apt-get update && apt-get install wget
+RUN wget -O ~/gtsam.zip https://github.com/borglab/gtsam/archive/4.0.0.zip
 RUN cd ~/ && unzip gtsam.zip
 RUN cd ~/gtsam-4.0.0-alpha2/ && mkdir build && cd build && cmake .. && make install -j4
 
